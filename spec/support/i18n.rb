@@ -1,6 +1,4 @@
 RSpec.configure do |config|
-  config.include AbstractController::Translation
-
   def with_translations(locale, translations)
     original_backend = I18n.backend
 
