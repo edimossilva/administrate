@@ -32,6 +32,14 @@ RSpec.describe Administrate::ApplicationHelper do
       expect(displayed).to eq("Customer")
     end
 
+    context 'when does not receive param :plural' do
+      it "uses the plural" do
+        displayed = display_resource_name(:customer)
+
+        expect(displayed).to eq("Customers")
+      end
+    end
+
     context "when translations are defined" do
       let(:translations) do
         {

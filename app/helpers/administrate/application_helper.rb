@@ -38,7 +38,12 @@ module Administrate
       "#{resource_name.to_s.singularize}_dashboard".classify.constantize
     end
 
-    def display_resource_name(resource_name, plural:)
+    def display_resource_name(resource_name, plural: true)
+      if plural.nil?
+        deprecated_message = "'display_resource_name' without 'plural:' parameter is deprecated and will be mandatory on next releases"
+        ActiveSupport::Deprecation.warn(deprecated_message)
+      end
+
       dashboard_from_resource(resource_name).resource_name(
         count: plural ? PLURAL_MANY_COUNT : 1,
         default: default_resource_name(resource_name, plural),
